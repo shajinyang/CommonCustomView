@@ -18,7 +18,7 @@
       在module的gradle里配置
       dependencies {
          ...
-      	 compile 'com.github.shajinyang:SjyndriodLibrarys:1.2.3'
+      	 compile 'com.github.shajinyang:CommonCustomView:1.0.0'
       }
 
 
