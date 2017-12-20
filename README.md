@@ -18,7 +18,7 @@
       在module的gradle里配置
       dependencies {
          ...
-      	 compile 'com.github.shajinyang:CommonCustomView:1.0.1'
+      	 compile 'com.github.shajinyang:CommonCustomView:1.0.2'
       }
 
 
@@ -76,41 +76,58 @@
 #### MyImageSpan
     居中的imagespan
 #### SLoadingView
-    加载状态view（网络错误，空数据，加载中，无网络）
-#### LoadingRelativeLayout
-    加载状态父布局（网络错误，空数据，加载中，无网络）
-    使用示例：
+加载状态view（网络错误，空数据，加载中，无网络）
+1.支持自定义视图配置
+2.支持自定义回调事件
+
+常规使用示例：
+
     xml:
-     <com.zx.xsk.views.LoadingRelativeLayout
-            android:id="@+id/loading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        ...
+    <com.sjy.customview.customview.loadingview.SLoadingView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sloading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+     </com.sjy.customview.customview.loadingview.SLoadingView>
 
-     </com.zx.xsk.views.LoadingRelativeLayout>
+    java:
+    sLoadingView= findViewById(R.id.sloading);
+            sLoadingView.showLoading();//显示加载弹框
+            sLoadingView.setOnStateClick(new OnStateClickListener() {
+                @Override
+                public void onClickError() {
+                    sLoadingView.showNoNet();//错误页面点击回调
+                }
 
-      java:
-      loadingRelativeLayout.showNoNet();//显示网络未连接
-      loadingRelativeLayout.showLoading();//显示加载中
-      loadingRelativeLayout.showEmpty();//显示空数据
-      loadingRelativeLayout.showError();//显示网络错误
-      loadingRelativeLayout.clearAll();//关闭状态视图
-      //状态点击回调
-      loadingRelativeLayout.setOnStateClick(new OnStateClickListener() {
-        @Override
-        public void onClickError() {
-            //todo
-        }
+                @Override
+                public void onClickNoNet() {//无网络点击回调
+                    sLoadingView.clearAll();
+                }
+            });
 
-        @Override
-        public void onClickNoNet() {
-            //todo
-        }
-      });
+如果默认的view无法满足你的需求，可以自定义view，在xml中配置即可
+
+       <com.sjy.customview.customview.loadingview.SLoadingView
+               xmlns:android="http://schemas.android.com/apk/res/android"
+               xmlns:app="http://schemas.android.com/apk/res-auto"
+               android:id="@+id/sloading"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               app:error_net_view="@layout/pop_view"//错误view
+               app:no_net_view="@layout/pop_view"//无网络view
+               app:loading_view="@layout/pop_view"//加载中view
+               app:empty_data_view="@layout/pop_view"//空数据view
+               >
+       </com.sjy.customview.customview.loadingview.SLoadingView>
+
 
 #### MultiKeyBoardView
-     复合键盘布局，基于viewpager,主要是优化了系统键盘和view的显示逻辑
-     使用示例：
+复合键盘布局，基于viewpager,主要是优化了系统键盘和view的显示逻辑
+
+使用示例：
+
      xml:
      <com.zx.xsk.views.mutikeyboardview.MultiKeyBoardView
                  android:id="@+id/mul"

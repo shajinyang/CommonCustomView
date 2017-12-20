@@ -21,9 +21,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.sjy.customview.customview.loadingview.OnStateClickListener;
+import com.sjy.customview.customview.loadingview.SLoadingView;
+
 public class MainActivity extends AppCompatActivity {
     PopupWindow popupWindow;
     View popView;
+    SLoadingView sLoadingView;
     private boolean isOpen=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,19 @@ public class MainActivity extends AppCompatActivity {
 //                showPop();
 //                showPopWindow();
                 showCusPop(v);
+            }
+        });
+        sLoadingView= findViewById(R.id.sloading);
+        sLoadingView.showError();
+        sLoadingView.setOnStateClick(new OnStateClickListener() {
+            @Override
+            public void onClickError() {
+                sLoadingView.showNoNet();
+            }
+
+            @Override
+            public void onClickNoNet() {
+                sLoadingView.clearAll();
             }
         });
     }

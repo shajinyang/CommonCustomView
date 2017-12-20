@@ -65,10 +65,10 @@
 
     <!--loadingview属性-->
     <declare-styleable name="SLoadingView">
-        <attr name="loading_view" format="integer"/>
-        <attr name="no_net_view" format="integer"/>
-        <attr name="error_net_view" format="integer"/>
-        <attr name="empty_data_view" format="integer"/>
+        <attr name="loading_view" format="reference"/>
+        <attr name="no_net_view" format="reference"/>
+        <attr name="error_net_view" format="reference"/>
+        <attr name="empty_data_view" format="reference"/>
     </declare-styleable>
 
 </resources>

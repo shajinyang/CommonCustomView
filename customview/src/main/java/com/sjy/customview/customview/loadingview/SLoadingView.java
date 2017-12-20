@@ -35,6 +35,7 @@ public class SLoadingView extends FrameLayout {
     private int errornetid=R.layout.sloadingview_error_net;
     private int emptyviewid=R.layout.sloadingview_no_data;
 
+    private OnStateClickListener onStateClickListener;
 
 
     public SLoadingView(@NonNull Context context) {
@@ -49,25 +50,22 @@ public class SLoadingView extends FrameLayout {
         super(context, attrs, defStyleAttr);
         if(attrs!=null){
             TypedArray typedArray=getContext().obtainStyledAttributes(attrs, R.styleable.SLoadingView);
-            loadingviewid=typedArray.getInteger(R.styleable.SLoadingView_loading_view,loadingviewid);
-            nonetviewid=typedArray.getInteger(R.styleable.SLoadingView_no_net_view,nonetviewid);
-            errornetid=typedArray.getInteger(R.styleable.SLoadingView_error_net_view,errornetid);
-            emptyviewid=typedArray.getInteger(R.styleable.SLoadingView_empty_data_view,emptyviewid);
+            loadingviewid=typedArray.getResourceId(R.styleable.SLoadingView_loading_view,loadingviewid);
+            nonetviewid=typedArray.getResourceId(R.styleable.SLoadingView_no_net_view,nonetviewid);
+            errornetid=typedArray.getResourceId(R.styleable.SLoadingView_error_net_view,errornetid);
+            emptyviewid=typedArray.getResourceId(R.styleable.SLoadingView_empty_data_view,emptyviewid);
         }
-
-
-        emptyDataView= LayoutInflater.from(getContext()).inflate(emptyviewid,null);
-        errorNetView.setVisibility(GONE);
-        emptyDataView.setVisibility(GONE);
-
-
-
-        addView(emptyDataView);
     }
 
     public void showLoading(){
         if(loadingView==null){
             loadingView= LayoutInflater.from(getContext()).inflate(loadingviewid,null);
+            loadingView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
             addView(loadingView);
         }else if(!loadingView.isShown()){
             loadingView.setVisibility(VISIBLE);
@@ -88,6 +86,14 @@ public class SLoadingView extends FrameLayout {
     public void showNoNet(){
         if(noNetView==null){
             noNetView= LayoutInflater.from(getContext()).inflate(nonetviewid,null);
+            noNetView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(onStateClickListener!=null){
+                        onStateClickListener.onClickNoNet();
+                    }
+                }
+            });
             addView(noNetView);
         }else if(!noNetView.isShown()){
             noNetView.setVisibility(VISIBLE);
@@ -107,6 +113,14 @@ public class SLoadingView extends FrameLayout {
     public void showError(){
         if(errorNetView==null){
             errorNetView= LayoutInflater.from(getContext()).inflate(errornetid,null);
+            errorNetView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(onStateClickListener!=null){
+                        onStateClickListener.onClickError();
+                    }
+                }
+            });
             addView(errorNetView);
         }else if(!errorNetView.isShown()){
             errorNetView.setVisibility(VISIBLE);
@@ -126,6 +140,12 @@ public class SLoadingView extends FrameLayout {
     public void showEmpty(){
         if(emptyDataView==null){
             emptyDataView= LayoutInflater.from(getContext()).inflate(emptyviewid,null);
+            emptyDataView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
             addView(emptyDataView);
         }else if(!emptyDataView.isShown()){
             emptyDataView.setVisibility(VISIBLE);
@@ -162,31 +182,7 @@ public class SLoadingView extends FrameLayout {
      * @param onStateClickListener
      */
     public void  setOnStateClick(final OnStateClickListener onStateClickListener){
-        errorNetView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onStateClickListener.onClickError();
-            }
-        });
-        noNetView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onStateClickListener.onClickNoNet();
-            }
-        });
-        loadingView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        emptyDataView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
+        this.onStateClickListener=onStateClickListener;
     }
 
 
