@@ -54,20 +54,24 @@ public class SLoadingView extends FrameLayout {
             errornetid=typedArray.getInteger(R.styleable.SLoadingView_error_net_view,errornetid);
             emptyviewid=typedArray.getInteger(R.styleable.SLoadingView_empty_data_view,emptyviewid);
         }
-        loadingView= LayoutInflater.from(getContext()).inflate(loadingviewid,null);
-        noNetView= LayoutInflater.from(getContext()).inflate(nonetviewid,null);
-        errorNetView= LayoutInflater.from(getContext()).inflate(errornetid,null);
+
+
         emptyDataView= LayoutInflater.from(getContext()).inflate(emptyviewid,null);
-        noNetView.setVisibility(GONE);
         errorNetView.setVisibility(GONE);
         emptyDataView.setVisibility(GONE);
-        addView(loadingView);
-        addView(noNetView);
-        addView(errorNetView);
+
+
+
         addView(emptyDataView);
     }
 
     public void showLoading(){
+        if(loadingView==null){
+            loadingView= LayoutInflater.from(getContext()).inflate(loadingviewid,null);
+            addView(loadingView);
+        }else if(!loadingView.isShown()){
+            loadingView.setVisibility(VISIBLE);
+        }
         if(errorNetView!=null&&errorNetView.isShown()){
             errorNetView.setVisibility(GONE);
         }
@@ -77,13 +81,17 @@ public class SLoadingView extends FrameLayout {
         if(emptyDataView!=null&&emptyDataView.isShown()){
             emptyDataView.setVisibility(GONE);
         }
-        if(loadingView!=null&&!loadingView.isShown()){
-            loadingView.setVisibility(VISIBLE);
-        }
+
 
     }
 
     public void showNoNet(){
+        if(noNetView==null){
+            noNetView= LayoutInflater.from(getContext()).inflate(nonetviewid,null);
+            addView(noNetView);
+        }else if(!noNetView.isShown()){
+            noNetView.setVisibility(VISIBLE);
+        }
         if(errorNetView!=null&&errorNetView.isShown()){
             errorNetView.setVisibility(GONE);
         }
@@ -93,12 +101,16 @@ public class SLoadingView extends FrameLayout {
         if(emptyDataView!=null&&emptyDataView.isShown()){
             emptyDataView.setVisibility(GONE);
         }
-        if(noNetView!=null&&!noNetView.isShown()){
-            noNetView.setVisibility(VISIBLE);
-        }
+
     }
 
     public void showError(){
+        if(errorNetView==null){
+            errorNetView= LayoutInflater.from(getContext()).inflate(errornetid,null);
+            addView(errorNetView);
+        }else if(!errorNetView.isShown()){
+            errorNetView.setVisibility(VISIBLE);
+        }
         if(loadingView!=null&&loadingView.isShown()){
             loadingView.setVisibility(GONE);
         }
@@ -108,12 +120,16 @@ public class SLoadingView extends FrameLayout {
         if(emptyDataView!=null&&emptyDataView.isShown()){
             emptyDataView.setVisibility(GONE);
         }
-        if(errorNetView!=null&&!errorNetView.isShown()){
-            errorNetView.setVisibility(VISIBLE);
-        }
+
     }
 
     public void showEmpty(){
+        if(emptyDataView==null){
+            emptyDataView= LayoutInflater.from(getContext()).inflate(emptyviewid,null);
+            addView(emptyDataView);
+        }else if(!emptyDataView.isShown()){
+            emptyDataView.setVisibility(VISIBLE);
+        }
         if(errorNetView!=null&&errorNetView.isShown()){
             errorNetView.setVisibility(GONE);
         }
@@ -123,9 +139,7 @@ public class SLoadingView extends FrameLayout {
         if(loadingView!=null&&loadingView.isShown()){
             loadingView.setVisibility(GONE);
         }
-        if(emptyDataView!=null&&!emptyDataView.isShown()){
-            emptyDataView.setVisibility(VISIBLE);
-        }
+
     }
 
     public void clearAll(){
