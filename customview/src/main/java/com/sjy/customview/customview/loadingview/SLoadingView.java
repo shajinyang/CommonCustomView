@@ -68,16 +68,16 @@ public class SLoadingView extends FrameLayout {
                 }
             });
             addView(loadingView);
-        }else if(!loadingView.isShown()){
+        }else if(loadingView.getVisibility()!=VISIBLE){
             loadingView.setVisibility(VISIBLE);
         }
-        if(errorNetView!=null&&errorNetView.isShown()){
+        if(errorNetView!=null&&errorNetView.getVisibility()==VISIBLE){
             errorNetView.setVisibility(GONE);
         }
-        if(noNetView!=null&&noNetView.isShown()){
+        if(noNetView!=null&&noNetView.getVisibility()==VISIBLE){
             noNetView.setVisibility(GONE);
         }
-        if(emptyDataView!=null&&emptyDataView.isShown()){
+        if(emptyDataView!=null&&emptyDataView.getVisibility()==VISIBLE){
             emptyDataView.setVisibility(GONE);
         }
 
@@ -96,16 +96,16 @@ public class SLoadingView extends FrameLayout {
                 }
             });
             addView(noNetView);
-        }else if(!noNetView.isShown()){
+        }else if(noNetView.getVisibility()!=VISIBLE){
             noNetView.setVisibility(VISIBLE);
         }
-        if(errorNetView!=null&&errorNetView.isShown()){
+        if(errorNetView!=null&&errorNetView.getVisibility()==VISIBLE){
             errorNetView.setVisibility(GONE);
         }
-        if(loadingView!=null&&loadingView.isShown()){
+        if(loadingView!=null&&loadingView.getVisibility()==VISIBLE){
             loadingView.setVisibility(GONE);
         }
-        if(emptyDataView!=null&&emptyDataView.isShown()){
+        if(emptyDataView!=null&&emptyDataView.getVisibility()==VISIBLE){
             emptyDataView.setVisibility(GONE);
         }
 
@@ -123,16 +123,16 @@ public class SLoadingView extends FrameLayout {
                 }
             });
             addView(errorNetView);
-        }else if(!errorNetView.isShown()){
+        }else if(errorNetView.getVisibility()!=VISIBLE){
             errorNetView.setVisibility(VISIBLE);
         }
-        if(loadingView!=null&&loadingView.isShown()){
+        if(loadingView!=null&&loadingView.getVisibility()==VISIBLE){
             loadingView.setVisibility(GONE);
         }
-        if(noNetView!=null&&noNetView.isShown()){
+        if(noNetView!=null&&noNetView.getVisibility()==VISIBLE){
             noNetView.setVisibility(GONE);
         }
-        if(emptyDataView!=null&&emptyDataView.isShown()){
+        if(emptyDataView!=null&&emptyDataView.getVisibility()==VISIBLE){
             emptyDataView.setVisibility(GONE);
         }
 
@@ -148,32 +148,32 @@ public class SLoadingView extends FrameLayout {
                 }
             });
             addView(emptyDataView);
-        }else if(!emptyDataView.isShown()){
+        }else if(emptyDataView.getVisibility()!=VISIBLE){
             emptyDataView.setVisibility(VISIBLE);
         }
-        if(errorNetView!=null&&errorNetView.isShown()){
+        if(errorNetView!=null&&errorNetView.getVisibility()==VISIBLE){
             errorNetView.setVisibility(GONE);
         }
-        if(noNetView!=null&&noNetView.isShown()){
+        if(noNetView!=null&&noNetView.getVisibility()==VISIBLE){
             noNetView.setVisibility(GONE);
         }
-        if(loadingView!=null&&loadingView.isShown()){
+        if(loadingView!=null&&loadingView.getVisibility()==VISIBLE){
             loadingView.setVisibility(GONE);
         }
 
     }
 
     public void clearAll(){
-        if(errorNetView!=null&&errorNetView.isShown()){
+        if(errorNetView!=null&&errorNetView.getVisibility()==VISIBLE){
             errorNetView.setVisibility(GONE);
         }
-        if(noNetView!=null&&noNetView.isShown()){
+        if(noNetView!=null&&noNetView.getVisibility()==VISIBLE){
             noNetView.setVisibility(GONE);
         }
-        if(emptyDataView!=null&&emptyDataView.isShown()){
+        if(emptyDataView!=null&&emptyDataView.getVisibility()==VISIBLE){
             emptyDataView.setVisibility(GONE);
         }
-        if(loadingView!=null&&loadingView.isShown()){
+        if(loadingView!=null&&loadingView.getVisibility()==VISIBLE){
             loadingView.setVisibility(GONE);
         }
     }
