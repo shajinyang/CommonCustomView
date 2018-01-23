@@ -60,6 +60,7 @@ public class SLoadingView extends FrameLayout {
     public void showLoading(){
         if(loadingView==null){
             loadingView= LayoutInflater.from(getContext()).inflate(loadingviewid,null);
+            loadingView.setVisibility(VISIBLE);
             loadingView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
